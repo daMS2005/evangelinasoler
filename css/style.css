@@ -449,24 +449,31 @@ section h2 {
 .whatsapp-button {
     display: inline-block;
     background-color: #25D366;
-    color: var(--white);
+    color: var(--white) !important;
     padding: 1.2rem 2.5rem;
     border-radius: 50px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 1.1rem;
     font-weight: 500;
     transition: all 0.3s ease;
     border: none;
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
     margin: 0 auto;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.whatsapp-button:hover {
+.whatsapp-button:hover,
+.whatsapp-button:focus,
+.whatsapp-button:active {
     background-color: #128C7E;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-    color: var(--white);
-    text-decoration: none;
+    color: var(--white) !important;
+    text-decoration: none !important;
+    outline: none;
 }
 
 .contact-note {
@@ -1006,12 +1013,18 @@ footer {
     }
 
     .whatsapp-button {
+        display: block;
         width: 100%;
         max-width: 300px;
         text-align: center;
         padding: 1rem 2rem;
-        margin: 0 auto;
-        display: block;
+        margin: 1rem auto;
+        font-weight: 500;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .contact-method .whatsapp-button {
+        margin-top: 1rem;
     }
 
     .contact-note {
