@@ -57,7 +57,7 @@ p {
 /* Navigation */
 .navbar {
     background-color: var(--nav-color);
-    padding: 1rem 2rem;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
@@ -69,7 +69,7 @@ p {
 }
 
 .logo {
-    text-align: left;
+    padding-right: 1rem;
 }
 
 .logo h1 {
@@ -135,16 +135,20 @@ p {
 .hamburger {
     display: none;
     cursor: pointer;
-    padding: 0.5rem;
-    background: none;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border-radius: 4px;
+    background: transparent;
     border: none;
+    margin-left: auto;
 }
 
 .hamburger span {
     display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px 0;
+    width: 24px;
+    height: 2px;
+    margin: 4px 0;
     background-color: var(--white);
     transition: all 0.3s ease;
 }
@@ -651,19 +655,25 @@ footer {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .navbar {
-        padding: 1rem;
+        padding: 0.8rem 1rem;
     }
 
     .logo h1 {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
+        line-height: 1.2;
+        margin-bottom: 0.2rem;
     }
 
     .logo p {
         font-size: 0.9rem;
+        opacity: 0.9;
     }
 
     .hamburger {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         z-index: 1001;
     }
 
@@ -696,8 +706,50 @@ footer {
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
+    .book-highlight {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        margin: 1rem;
+        text-align: center;
+    }
+
+    .book-cover {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+
+    .book-info {
+        padding: 1rem;
+        text-align: left;
+    }
+
+    .book-info h3 {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+        text-align: center;
+    }
+
+    .book-info h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+    }
+
+    .book-description {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0 0.5rem 1.5rem 0.5rem;
+    }
+
+    .book-editor, 
+    .book-prologue {
+        font-size: 0.95rem;
+        margin: 0 0.5rem 0.8rem 0.5rem;
+    }
+
+    /* Improved hamburger animation */
     .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 6px);
+        transform: rotate(45deg) translate(5px, 5px);
     }
 
     .hamburger.active span:nth-child(2) {
@@ -705,29 +757,20 @@ footer {
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -5px);
+        transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* Mobile content adjustments */
+    /* Section spacing */
     section {
-        padding: 3rem 1rem;
+        padding: 4rem 1rem 2rem;
     }
 
-    h1 {
-        font-size: 2rem;
+    section:first-of-type {
+        padding-top: 5rem;
     }
 
     h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .hero-content {
-        padding: 1rem;
-    }
-
-    .hero-image {
-        max-width: 250px;
+        font-size: 2rem;
         margin-bottom: 1.5rem;
     }
 
