@@ -199,6 +199,7 @@ section h2 {
     background-color: var(--light-gray);
     padding: 6rem 2rem;
     text-align: center;
+    margin-top: 60px;
 }
 
 .hero-content {
@@ -229,7 +230,7 @@ section h2 {
 .hero-cta {
     display: inline-block;
     background-color: var(--primary-color);
-    color: var(--white);
+    color: var(--white) !important;
     padding: 1.2rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
@@ -246,9 +247,10 @@ section h2 {
 
 .hero-cta:hover {
     background-color: var(--white);
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(26, 54, 93, 0.2);
+    text-decoration: none;
 }
 
 /* About section */
@@ -794,22 +796,17 @@ footer {
         top: 0;
         right: -100%;
         width: 80%;
+        max-width: 300px;
         height: 100vh;
         background-color: var(--primary-color);
         flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 5rem;
+        padding: 5rem 2rem 2rem;
         transition: all 0.3s ease;
-        gap: 0;
         z-index: 1001;
-        visibility: hidden;
-        opacity: 0;
     }
 
     .nav-links.active {
         right: 0;
-        visibility: visible;
-        opacity: 1;
     }
 
     .nav-links li {
@@ -1010,11 +1007,8 @@ footer {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         z-index: 1000;
-        opacity: 1;
-        visibility: visible;
-        transition: all 0.3s ease;
     }
 
     .contact-methods {
@@ -1058,11 +1052,13 @@ footer {
     }
 
     .hero-cta {
+        display: inline-block;
         padding: 1rem 2rem;
         font-size: 1.05rem;
-        width: auto;
-        min-width: 200px;
+        width: 80%;
+        max-width: 300px;
         text-align: center;
+        margin: 2rem auto 0;
     }
 }
 

@@ -4,19 +4,47 @@ document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
 
     // Mobile menu functionality
-    hamburger.addEventListener("click", () => {
+    hamburger.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent click from bubbling up
         hamburger.classList.toggle("active");
         navLinks.classList.toggle("active");
         body.classList.toggle("menu-open");
     });
 
-    // Close mobile menu when clicking outside
+    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
         if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
             hamburger.classList.remove("active");
             navLinks.classList.remove("active");
             body.classList.remove("menu-open");
         }
+    });
+
+    // Prevent clicks inside the menu from closing it
+    navLinks.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") {
+            // Close menu when clicking a link
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+            body.classList.remove("menu-open");
+            
+            // Handle smooth scrolling
+            e.preventDefault();
+            const targetId = e.target.getAttribute("href");
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerOffset = 70;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }
+        e.stopPropagation(); // Prevent click from bubbling up
     });
 
     // Smooth scrolling for navigation links
@@ -64,14 +92,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update active state on scroll
     window.addEventListener("scroll", setActiveLink);
     setActiveLink();
-
-    // Close mobile menu when clicking a link
-    navLinks.addEventListener("click", (e) => {
-        if (e.target.tagName === "A") {
-            hamburger.classList.remove("active");
-            navLinks.classList.remove("active");
-            body.classList.remove("menu-open");
-        }
-    });
 });
   
