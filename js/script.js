@@ -2,37 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
     const body = document.body;
-    const navItems = document.querySelectorAll(".nav-links li");
 
     // Mobile menu functionality
-    hamburger.addEventListener("click", function (e) {
-        e.stopPropagation();
-        navLinks.classList.toggle("active");
+    hamburger.addEventListener("click", () => {
         hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
         body.classList.toggle("menu-open");
     });
 
-    // Close mobile menu when clicking a link
-    navLinks.addEventListener("click", function (e) {
-        if (e.target.tagName === "A") {
-            navLinks.classList.remove("active");
-            hamburger.classList.remove("active");
-            body.classList.remove("menu-open");
-        }
-    });
-
     // Close mobile menu when clicking outside
-    document.addEventListener("click", function (e) {
+    document.addEventListener("click", (e) => {
         if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove("active");
             hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
             body.classList.remove("menu-open");
         }
-    });
-
-    // Prevent clicks inside the menu from closing it
-    navLinks.addEventListener("click", function (e) {
-        e.stopPropagation();
     });
 
     // Smooth scrolling for navigation links
@@ -54,30 +38,40 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Add active class to navigation links based on scroll position
-    const sections = document.querySelectorAll("section");
+    // Handle active state for navigation links
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
 
-    function setActiveNavItem() {
-        let current = "";
+    function setActiveLink() {
+        const scrollPosition = window.scrollY + 100;
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 100) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navItems.forEach(item => {
-            const link = item.querySelector("a");
-            if (link) {
-                link.classList.remove("active");
-                if (link.getAttribute("href").slice(1) === current) {
-                    link.classList.add("active");
-                }
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute("id");
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navItems.forEach(item => {
+                    item.classList.remove("active");
+                    if (item.getAttribute("href") === "#" + sectionId) {
+                        item.classList.add("active");
+                    }
+                });
             }
         });
     }
 
-    window.addEventListener("scroll", setActiveNavItem);
-    window.addEventListener("load", setActiveNavItem);
+    // Update active state on scroll
+    window.addEventListener("scroll", setActiveLink);
+    setActiveLink();
+
+    // Close mobile menu when clicking a link
+    navLinks.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+            body.classList.remove("menu-open");
+        }
+    });
 });
   

@@ -836,6 +836,23 @@ footer {
         padding: 1rem 2rem;
         font-size: 1.1rem;
         border-bottom: 1px solid rgba(255,255,255,0.1);
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left: 4px solid var(--white);
+        padding-left: calc(2rem - 4px);
+    }
+
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding-left: calc(2rem + 5px);
+    }
+
+    .nav-links a::after {
+        display: none;
     }
 
     .nav-links .cta-button {
