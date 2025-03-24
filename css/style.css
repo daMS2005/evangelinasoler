@@ -92,22 +92,31 @@ p {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
     color: var(--white);
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     position: relative;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 0;
     height: 2px;
     background-color: var(--white);
@@ -116,7 +125,7 @@ p {
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-    width: 80%;
+    width: 100%;
 }
 
 .nav-links .cta-button {
@@ -130,6 +139,7 @@ p {
     border-radius: 50px;
     transition: all 0.3s ease;
     border: 2px solid var(--primary-color);
+    opacity: 1;
 }
 
 .nav-links .cta-button a:hover {
@@ -137,6 +147,7 @@ p {
     color: var(--white);
 }
 
+/* Don't show underline for CTA button */
 .nav-links .cta-button a::after {
     display: none;
 }
@@ -817,7 +828,7 @@ footer {
     }
 
     .nav-links li {
-        margin: 1rem 0;
+        margin: 0;
     }
 
     .nav-links a {
@@ -825,8 +836,6 @@ footer {
         padding: 1rem 2rem;
         font-size: 1.1rem;
         border-bottom: 1px solid rgba(255,255,255,0.1);
-        position: relative;
-        transition: all 0.3s ease;
     }
 
     .nav-links a.active {
@@ -837,11 +846,6 @@ footer {
 
     .nav-links a:hover {
         background-color: rgba(255, 255, 255, 0.05);
-        padding-left: calc(2rem + 5px);
-    }
-
-    .nav-links a::after {
-        display: none;
     }
 
     .nav-links .cta-button {

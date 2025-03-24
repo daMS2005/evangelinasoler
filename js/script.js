@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Mobile menu toggle
-    const menuButton = document.querySelector('.menu-button');
+    const menuButton = document.querySelector('.hamburger');
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
     const nav = document.querySelector('.nav-links');
@@ -28,28 +28,38 @@ document.addEventListener("DOMContentLoaded", function () {
             nav.classList.remove('active');
             menuButton.classList.remove('active');
             
-            targetSection.scrollIntoView({
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
                 behavior: 'smooth'
             });
         });
     });
 
     // Highlight active section in navigation
-    window.addEventListener('scroll', () => {
-        let current = '';
+    function highlightNavigation() {
+        const scrollPosition = window.scrollY + 150; // Offset for better highlighting
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
             }
         });
+    }
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
+    // Call on scroll and page load
+    window.addEventListener('scroll', highlightNavigation);
+    highlightNavigation();
 });
