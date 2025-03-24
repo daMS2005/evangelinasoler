@@ -24,7 +24,8 @@
       "headers": {
         "cache-control": "public, max-age=31536000, immutable",
         "Access-Control-Allow-Origin": "*",
-        "X-Content-Type-Options": "nosniff"
+        "X-Content-Type-Options": "nosniff",
+        "Content-Type": "image/jpeg"
       },
       "continue": true
     },
@@ -52,7 +53,7 @@
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Content-Security-Policy": "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'none'",
+        "Content-Security-Policy": "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; frame-ancestors 'none'; img-src 'self' data: https:;",
         "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
       },
